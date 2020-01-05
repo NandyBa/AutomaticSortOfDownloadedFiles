@@ -39,7 +39,9 @@ def sort_file(file):
 	file_extension = filename.rsplit('.', 1)[1]
 	if(not(filename in Files_moved) and file_extension != 'tmp' ):
 		print(filename + " has been detected")
-
+        while(os.path.isfile(file) == False):
+            time.sleep(1)
+            
 		if(file_extension in audio_regex_list):
 			move_file(filename, path, "Your/Music/Path") #On Windows default path is C:/Users/your-username/Music
 		elif(file_extension in text_regex_list):
