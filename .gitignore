@@ -1,0 +1,8 @@
+# .GitIgnore file
+
+.git/
+# Configuration File
+config.py
+
+# Python cache path
+__pycache__/

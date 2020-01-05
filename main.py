@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+import config as cfg
 import os
 import re
 import time
@@ -5,7 +7,7 @@ from pathlib import Path
 from watchdog.observers import Observer
 from watchdog.events import PatternMatchingEventHandler
 
-track_dir = "Your/Downloads/Path/" #On Windows default path is C:/Users/your-username/Downloads
+track_dir = cfg.path['download']+'/'
 
 audio_regex_list = ["mp3", "wav", "m3u"]
 text_regex_list = ["txt", "doc", "docx", "odt", "pdf", "tex", "epub"]
@@ -43,9 +45,9 @@ def sort_file(file):
             time.sleep(1)
             
 		if(file_extension in audio_regex_list):
-			move_file(filename, path, "Your/Music/Path") #On Windows default path is C:/Users/your-username/Music
+			move_file(filename, path, cfg.path['music'])
 		elif(file_extension in text_regex_list):
-			move_file(filename, path, "C:/Users/banan/Documents") #On Windows default path is C:/Users/your-username/Documents
+			move_file(filename, path, cfg.path['document'])
 	
 
 def on_created(event):
