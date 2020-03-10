@@ -38,7 +38,7 @@ def sort_file(file):
 	path, filename = file.rsplit('/', 1)
 	
 
-	file_extension = filename.rsplit('.', 1)[1]
+	file_extension = (filename.rsplit('.', 1)[1]).lower()
 	if(not(filename in Files_moved) and file_extension != 'tmp' ):
 		print(filename + " has been detected")
 		while(os.path.isfile(file) == False):
@@ -57,7 +57,9 @@ def on_created(event):
 def move_file(filename, oldPath, newPath):
 	global Files_moved
 	Files_moved = Files_moved + [filename]
-	Path(oldPath + "/" + filename).rename(newPath + "/" + filename)
+	filenewname = filename.rsplit('.', 1)[0]+'.'+(filename.rsplit('.', 1)[1]).lower()
+	print("New filename "+filenewname)
+	Path(oldPath + "/" + filename).rename(newPath + "/" + filenewname)
 	print(filename + " has been moved")
 
 
